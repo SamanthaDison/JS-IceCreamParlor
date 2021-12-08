@@ -59,7 +59,7 @@ function drawMenu() {
     products.forEach(prod => {
         template += `
         <div class="col-6 p-2">
-            <div class="bg-white p-3 shadow ">
+            <div onclick="addToCart('${prod.id}')" class="bg-white p-3 shadow ">
                 <img class="product-img"
                     src="${prod.image}"
                     alt="${prod.name}">
@@ -76,7 +76,6 @@ function drawMenu() {
 
 function drawCart() {
     let template = ''
-    let total = 0
     cart.forEach(prod => {
         template += `
         <div>
@@ -88,7 +87,10 @@ function drawCart() {
     document.getElementById('cart').innerHTML = template
 }
 
-function addToCart() {
+function addToCart(id) {
+    const order = products.find(prod => prod.id === id)
+    cart.push(order)
+    drawCart()
 
 }
 
